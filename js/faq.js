@@ -42,7 +42,7 @@ const FAQS = [
   {
     cat: "Pick-up and return",
     q: "Where do I return the car?",
-    a: 'Return it to the designated AZoom car park you chose when booking. See the <a href="branches.html">Branches page</a> for the full list. You don\'t need to come back to the office.'
+    a: 'Return it to the designated AZoom car park you chose when booking. See the <a href="branches.html">Branches page</a> for the full list. You don\'t need to come back to the office. Before you leave, confirm the return in My bookings and add a photo of the car.'
   },
   {
     cat: "Pick-up and return",

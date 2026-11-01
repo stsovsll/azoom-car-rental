@@ -57,7 +57,8 @@ function renderBookingInfo() {
         <li><span>Car park</span><span>${getCarpark(b.returned.carparkId).name}</span></li>
         <li><span>At check-out</span><span>${b.checkout ? `${b.checkout.mileage.toLocaleString()} km · ${b.checkout.battery}%` : "–"}</span></li>
       </ul>
-    </div>`;
+    </div>
+    ${returnPhotoHTML(b)}`;
 }
 
 function setupReadings() {
@@ -92,9 +93,10 @@ function renderAreas() {
   document.getElementById("areas").innerHTML = INSPECTION_AREAS.map(
     a => `
     <div class="area-card" id="area-${a.id}">
-      <h3 class="h4">${a.name}
-        <label class="check small mb-0"><input type="checkbox" name="dmg-${a.id}" data-area="${a.id}"> Damage found</label>
-      </h3>
+      <div class="area-head">
+        <h3 class="h4 mb-0">${a.name}</h3>
+        <label class="check small area-toggle"><input type="checkbox" name="dmg-${a.id}" data-area="${a.id}"> Damage found</label>
+      </div>
       <p class="small text-muted mb-0 ok-text">${icon("check")} No new damage</p>
       <div class="area-details" hidden>
         <div class="form-group">
@@ -110,7 +112,7 @@ function renderAreas() {
           <input type="file" id="photo-${a.id}" accept="image/*" multiple data-photo="${a.id}">
           <div class="photo-previews" id="prev-${a.id}"></div>
         </div>
-        <p class="small mb-0">Charge: <strong id="charge-${a.id}">–</strong></p>
+        <p class="small mb-0 area-charge"><span>Charge</span><strong id="charge-${a.id}">–</strong></p>
       </div>
     </div>`
   ).join("");
@@ -180,29 +182,6 @@ function updateTotals() {
       formatMoney(bill.amountDue),
       "total"
     );
-}
-
-function resizeImage(file, maxWidth = 480) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = reject;
-    reader.onload = () => {
-      const img = new Image();
-      img.onerror = reject;
-      img.onload = () => {
-        const scale = Math.min(1, maxWidth / img.width);
-        const canvas = document.createElement("canvas");
-        canvas.width = Math.round(img.width * scale);
-        canvas.height = Math.round(img.height * scale);
-        canvas
-          .getContext("2d")
-          .drawImage(img, 0, 0, canvas.width, canvas.height);
-        resolve(canvas.toDataURL("image/jpeg", 0.7));
-      };
-      img.src = reader.result;
-    };
-    reader.readAsDataURL(file);
-  });
 }
 
 async function addPhotos(areaId, input) {

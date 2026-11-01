@@ -145,7 +145,7 @@ function openDetails(ref) {
   openModal({
     title: `Booking ${b.ref}`,
     size: "lg",
-    content: `<p>${statusBadge(b.status)}</p>${bookingSummaryHTML(b)}${history ? `<h3 class="h4 mt-3">History</h3><ul class="small">${history}</ul>` : ""}`,
+    content: `<p>${statusBadge(b.status)}</p>${bookingSummaryHTML(b)}${returnPhotoHTML(b)}${history ? `<h3 class="h4 mt-3">History</h3><ul class="small">${history}</ul>` : ""}`,
     buttons: [
       { text: "Close" },
       {
@@ -343,17 +343,55 @@ function returnCar(ref) {
     localDateTime(new Date()),
     getCar(b.carId).daily
   );
+  let photo = "";
   const form = document.createElement("form");
   form.noValidate = true;
   form.innerHTML = `
     <div class="form-group"><label for="r-carpark">Where did you park?</label>
       <select id="r-carpark" name="carpark">${CARPARKS.map(c => `<option value="${c.id}" ${c.id === b.returnCarparkId ? "selected" : ""}>${c.name} (${c.lots})</option>`).join("")}</select></div>
+    <div class="form-group"><label for="r-photo" class="required">Photo of the car</label>
+      <input type="file" id="r-photo" name="photo" accept="image/*" aria-describedby="r-photo-hint">
+      <p class="hint" id="r-photo-hint">Show the whole car in its parking lot. This is your record of how you left it.</p>
+      <div class="photo-previews return-preview" id="r-photo-preview"></div></div>
     <div class="form-group"><label class="check"><input type="checkbox" name="parked"> I've parked in an AZoom lot, locked the car and dropped the key card in the key box.</label></div>
     ${late.fee ? `<div class="alert alert-warning">${icon("clock")}<p>You're returning ${friendlyDuration(late.minutesLate / 60)} late. A late fee of about <strong>${formatMoney(late.fee)}</strong> will be added to your bill.</p></div>` : ""}
     <p class="small text-muted mb-0">Remember: battery below ${POLICY.lowBatteryThreshold}% adds a ${formatMoney(POLICY.lowBatteryFee)} recharging fee.</p>`;
   form.addEventListener("submit", e => e.preventDefault());
   const validate = setupForm(form, {
+    photo: () => (photo ? "" : "Add a photo of the car."),
     parked: c => (c ? "" : "Please confirm the car is parked and locked.")
+  });
+
+  const photoInput = form.elements.photo;
+  const preview = form.querySelector("#r-photo-preview");
+  const clearPhoto = () => {
+    photo = "";
+    photoInput.value = "";
+    preview.innerHTML = "";
+  };
+  photoInput.addEventListener("change", async () => {
+    const file = photoInput.files[0];
+    if (!file) return clearPhoto();
+    const reject = message => {
+      clearPhoto();
+      setFieldError(photoInput, message);
+    };
+    if (!file.type.startsWith("image/"))
+      return reject(`${file.name} is not an image.`);
+    if (file.size > 10 * 1024 * 1024)
+      return reject(`${file.name} is larger than 10 MB.`);
+    try {
+      photo = await resizeImage(file, 640);
+    } catch (e) {
+      return reject(`Couldn't read ${file.name}.`);
+    }
+    setFieldError(photoInput, "");
+    preview.innerHTML = `<figure><img src="${photo}" alt="Your photo of the car">
+      <button type="button" aria-label="Remove photo">×</button></figure>`;
+    preview.querySelector("button").addEventListener("click", () => {
+      clearPhoto();
+      photoInput.focus();
+    });
   });
 
   openModal({
@@ -372,11 +410,19 @@ function returnCar(ref) {
               status: "returned",
               returned: {
                 at: localDateTime(new Date()),
-                carparkId: form.elements.carpark.value
+                carparkId: form.elements.carpark.value,
+                photo
               }
             },
             `Car returned to ${getCarpark(form.elements.carpark.value).name}.`
           );
+          if (getBooking(ref).status !== "returned") {
+            showToast(
+              "Could not save – the photo may be too large. Try another one.",
+              "error"
+            );
+            return;
+          }
           m.close();
           showToast(
             "Thanks! The car is marked as returned. We'll inspect it and send your final bill."

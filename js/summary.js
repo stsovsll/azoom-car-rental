@@ -68,6 +68,15 @@ function bookingSummaryHTML(b) {
     </div>`;
 }
 
+function returnPhotoHTML(b) {
+  if (!b.returned || !b.returned.photo) return "";
+  return `
+    <figure class="return-photo">
+      <img src="${b.returned.photo}" alt="${carName(getCar(b.carId))} photographed by the customer at return">
+      <figcaption class="small text-muted">Customer's photo at return, ${formatDateTime(b.returned.at)}</figcaption>
+    </figure>`;
+}
+
 function inspectionHTML(b) {
   const i = b.inspection;
   if (!i) return "";
@@ -92,6 +101,7 @@ function inspectionHTML(b) {
       <li><span>Returned to</span><span>${b.returned ? getCarpark(b.returned.carparkId).name : "–"}</span></li>
     </ul>
     ${i.notes ? `<p class="small"><strong>Notes:</strong> ${escapeHtml(i.notes)}</p>` : ""}
+    ${returnPhotoHTML(b)}
     ${photos.length ? `<div class="photo-previews">${photos.map(p => `<figure><img src="${p.src}" alt="Damage photo – ${p.area}"></figure>`).join("")}</div>` : ""}`;
 }
 

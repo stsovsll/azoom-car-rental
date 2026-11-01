@@ -2809,6 +2809,7 @@ legend {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
+  align-items: start;
 }
 
 .area-card {
@@ -2823,13 +2824,59 @@ legend {
   background: color-mix(in srgb, var(--warning-bg) 60%, var(--surface));
 }
 
-.area-card h3 {
+.area-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: .5rem;
   flex-wrap: wrap;
-  margin-bottom: .7rem;
+  margin-bottom: .6rem;
+}
+
+.area-toggle {
+  align-items: center;
+  gap: .45rem;
+  margin: 0;
+  padding: .3rem .7rem;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.area-toggle:hover {
+  border-color: var(--amber);
+}
+
+.area-toggle input {
+  margin: 0;
+  accent-color: var(--amber);
+}
+
+.has-damage .area-toggle {
+  border-color: var(--amber);
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.ok-text {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+.ok-text[hidden] {
+  display: none;
+}
+
+.area-details {
+  border-top: 1px solid color-mix(in srgb, var(--amber) 35%, transparent);
+  padding-top: .75rem;
+}
+
+.area-charge {
+  display: flex;
+  justify-content: space-between;
+  gap: .5rem;
 }
 
 .area-card .form-group {
@@ -2869,6 +2916,33 @@ legend {
   font-size: .75rem;
   cursor: pointer;
   line-height: 1;
+}
+
+.return-preview figure {
+  width: 100%;
+  max-width: 320px;
+}
+
+.return-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.return-photo {
+  margin: 1rem 0 0;
+}
+
+.return-photo img {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.return-photo figcaption {
+  margin-top: .3rem;
 }
 
 .invoice {
