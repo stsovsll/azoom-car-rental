@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our fleet – AZoom Car Rental</title>
+  <meta name="description" content="Browse, filter and compare AZoom's electric cars: Tesla, BYD, Hyundai, MG and Kia.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="fleet">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="section-sm">
+      <h1 class="sr-only">Our electric fleet</h1>
+      <div class="container" id="login-banner" hidden>
+        <div class="alert mb-3">
+          <span data-icon="info"></span>
+          <p><strong>Ready to book?</strong> Browse our cars and prices below, then <a href="login.html?next=fleet.html">log in</a> or <a href="register.html?next=fleet.html">create a free account</a> to book a vehicle.</p>
+        </div>
+      </div>
+      <div class="container fleet-layout">
+        <aside class="panel filters" id="filter-panel" aria-labelledby="filter-title">
+          <div class="flex between mb-2">
+            <h2 id="filter-title" class="mb-0"><span data-icon="filter"></span> Filters</h2>
+            <div class="flex">
+              <button type="button" class="btn btn-ghost btn-sm" id="clear-filters">Clear</button>
+              <button type="button" class="icon-btn filters-close" id="close-filters" aria-label="Close filters"><span data-icon="x"></span></button>
+            </div>
+          </div>
+          <form id="filters" onsubmit="return false">
+            <fieldset class="filter-group">
+              <legend>Brand</legend>
+              <div id="brand-filters"></div>
+            </fieldset>
+            <div class="filter-group">
+              <label for="f-seats">Seats</label>
+              <select id="f-seats" name="seats">
+                <option value="0">Any</option>
+                <option value="5">5 or more</option>
+                <option value="7">7 seats</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <div class="range-row"><label for="f-price" class="mb-0">Max daily price</label><output id="f-price-out" for="f-price"></output></div>
+              <input type="range" id="f-price" name="price" step="10">
+            </div>
+            <div class="filter-group">
+              <div class="range-row"><label for="f-range" class="mb-0">Min range</label><output id="f-range-out" for="f-range"></output></div>
+              <input type="range" id="f-range" name="range" min="400" max="580" step="10" value="400">
+            </div>
+          </form>
+          <button type="button" class="btn btn-primary btn-block filters-done" id="show-results">Show cars</button>
+        </aside>
+
+        <div>
+          <div class="filter-bar">
+            <button type="button" class="btn btn-outline btn-sm" id="open-filters" aria-expanded="false" aria-controls="filter-panel">
+              <span data-icon="filter"></span> Filters <span class="filter-count" id="filter-count" hidden></span>
+            </button>
+            <span class="small text-muted" id="filter-bar-count"></span>
+          </div>
+          <div class="toolbar">
+            <p class="mb-0 text-muted" id="result-count" aria-live="polite"></p>
+            <div class="flex">
+              <label for="sort" class="mb-0">Sort by</label>
+              <select id="sort">
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="range-desc">Range: longest first</option>
+                <option value="charge-asc">Charging: fastest first</option>
+                <option value="seats-desc">Seats: most first</option>
+                <option value="name-asc">Name: A–Z</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-3" id="car-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="compare-bar no-print" id="compare-bar" hidden>
+      <span id="compare-text"></span>
+      <button type="button" class="btn btn-ghost btn-sm" id="compare-clear" style="color:#CBD5E1">Clear</button>
+      <button type="button" class="btn btn-primary btn-sm" id="compare-open"><span data-icon="columns"></span> Compare</button>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/cars.js"></script>
+  <script src="js/fleet.js"></script>
+</body>
+</html>

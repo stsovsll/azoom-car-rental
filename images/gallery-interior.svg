@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 210" role="img">
+  <rect x="0" y="0" width="496" height="210" rx="16" fill="#1E293B"/>
+  <path d="M0,150 C120,120 376,120 496,150 L496,210 L0,210 Z" fill="#334155"/>
+  <rect x="40" y="40" width="416" height="54" rx="14" fill="#0F172A"/>
+  <rect x="190" y="52" width="150" height="86" rx="10" fill="#0B8F6A"/>
+  <rect x="198" y="60" width="134" height="70" rx="6" fill="#04342C"/>
+  <path d="M212,112 L236,90 L256,104 L280,78 L318,112 Z" fill="#34D399" opacity=".55"/>
+  <circle cx="226" cy="76" r="7" fill="#22D3EE"/>
+  <circle cx="120" cy="140" r="52" fill="none" stroke="#0F172A" stroke-width="14"/>
+  <circle cx="120" cy="140" r="14" fill="#0F172A"/>
+  <path d="M120,140 L74,126 M120,140 L166,126" stroke="#0F172A" stroke-width="12" stroke-linecap="round"/>
+  <rect x="380" y="116" width="60" height="70" rx="12" fill="#475569"/>
+  <rect x="300" y="160" width="60" height="40" rx="10" fill="#475569"/>
+  <text x="248" y="200" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#CBD5E1">Minimal cabin with central touchscreen</text>
+</svg>

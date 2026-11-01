@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create an account – AZoom Car Rental</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="register">
+  <div id="site-header"></div>
+
+  <main id="main" class="auth-wrap">
+    <section class="auth-side">
+      <h2>Join AZoom</h2>
+      <p>Create a free account to reserve an electric car in minutes.</p>
+      <ul>
+        <li>No membership fee</li>
+        <li>Free cancellation up to 48 hours before pick-up</li>
+        <li>Drivers must be <span id="side-age"></span>+ with at least <span id="side-years"></span> of driving experience</li>
+      </ul>
+    </section>
+
+    <section class="auth-main">
+      <div class="auth-card">
+        <h1 class="h3">Create your account</h1>
+        <p class="text-muted small">All fields are required.</p>
+        <form id="register-form" novalidate>
+          <div class="form-group">
+            <label for="r-name">Full name (as on licence)</label>
+            <input type="text" id="r-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="r-email">Email</label>
+            <input type="email" id="r-email" name="email" autocomplete="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="r-phone">Mobile number</label>
+            <div class="phone-group">
+              <select id="r-country-code" name="countryCode" aria-label="Country code" autocomplete="tel-country-code"></select>
+              <input type="tel" id="r-phone" name="phone" autocomplete="tel-national" required placeholder="9123 4567">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="r-dob">Date of birth</label>
+            <input type="date" id="r-dob" name="dob" autocomplete="bday" required>
+          </div>
+          <div class="form-group">
+            <label for="r-password">Password</label>
+            <div class="input-group">
+              <input type="password" id="r-password" name="password" autocomplete="new-password" required aria-describedby="r-strength-label">
+              <button type="button" class="input-addon" data-toggle-password="r-password"></button>
+            </div>
+            <div class="strength" id="r-strength">
+              <div class="strength-bar" aria-hidden="true"><span></span></div>
+              <p class="strength-label mb-0" id="r-strength-label" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="r-confirm">Confirm password</label>
+            <div class="input-group">
+              <input type="password" id="r-confirm" name="confirm" autocomplete="new-password" required>
+              <button type="button" class="input-addon" data-toggle-password="r-confirm"></button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="check"><input type="checkbox" name="terms" id="r-terms"> I agree to the <a href="terms.html" target="_blank" rel="noopener">Terms and Conditions</a>.</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Create account</button>
+        </form>
+        <p class="mt-2 text-center">Already have an account? <a href="login.html">Log in</a></p>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

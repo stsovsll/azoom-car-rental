@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Staff dashboard – AZoom Car Rental</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="staff">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="section-sm">
+      <div class="container">
+        <div class="flex flex-wrap between mb-3">
+          <div>
+            <h1 class="h3 mb-0">Staff dashboard</h1>
+            <p class="text-muted mb-0" id="staff-hello"></p>
+          </div>
+          <div class="form-group mb-0">
+            <label for="branch-filter" class="sr-only">Branch</label>
+            <select id="branch-filter" style="width:auto">
+              <option value="all">All branches</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="kpis" id="kpis" aria-label="Fleet summary"></div>
+
+        <section id="checkout" class="panel mb-3" aria-labelledby="checkout-title">
+          <h2 class="h3" id="checkout-title"><span data-icon="key"></span> Check-out (customer pick-up)</h2>
+          <div class="grid grid-2" style="align-items:start">
+            <div>
+              <form id="lookup-form" class="flex flex-wrap" novalidate style="align-items:flex-start">
+                <div class="form-group" style="flex:1 1 10rem">
+                  <label for="lookup-ref">Booking reference</label>
+                  <input type="text" id="lookup-ref" name="ref" placeholder="AZ-8F3K2Q" style="text-transform:uppercase" autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top:1.75rem"><span data-icon="search"></span> Look up</button>
+              </form>
+              <h3 class="h4">Upcoming pick-ups</h3>
+              <ul class="line-items" id="pickup-list"></ul>
+            </div>
+            <div id="checkout-panel">
+              <div class="empty-state">Look up a booking reference to start the check-out.</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="returns" class="mb-3" aria-labelledby="returns-title">
+          <h2 class="h3" id="returns-title"><span data-icon="clipboard"></span> Returns queue <span class="badge badge-warning" id="returns-count"></span></h2>
+          <p class="text-muted">Cars returned to a car park that are waiting for inspection. Oldest first.</p>
+          <div class="table-wrap">
+            <table class="table">
+              <caption class="sr-only">Cars waiting for inspection</caption>
+              <thead><tr><th scope="col">Booking</th><th scope="col">Car</th><th scope="col">Customer</th><th scope="col">Returned</th><th scope="col">Car park</th><th scope="col"><span class="sr-only">Action</span></th></tr></thead>
+              <tbody id="returns-rows"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="board-section" aria-labelledby="board-title">
+          <h2 class="h3" id="board"><span data-icon="layout"></span> <span id="board-title">Fleet status board</span></h2>
+          <p class="text-muted">Live status of every vehicle, worked out from bookings. Choose a status to show only those vehicles.</p>
+          <div class="board-filters" role="group" aria-label="Show vehicles by status" id="board-filters"></div>
+          <form class="board-controls" id="board-controls" role="search" aria-label="Search and filter vehicles">
+            <div class="form-group">
+              <label for="board-search">Search</label>
+              <input type="search" id="board-search" placeholder="Plate, car, booking ref or customer" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="board-location">Location</label>
+              <select id="board-location">
+                <option value="all">All locations</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="board-model">Model</label>
+              <select id="board-model">
+                <option value="all">All models</option>
+              </select>
+            </div>
+            <button type="button" class="btn btn-outline" id="board-clear">Clear filters</button>
+          </form>
+          <p class="small text-muted" id="board-count" aria-live="polite"></p>
+          <div class="board" id="board-cols"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/summary.js"></script>
+  <script src="js/staff.js"></script>
+</body>
+</html>

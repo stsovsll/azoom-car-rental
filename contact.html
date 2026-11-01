@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact us – AZoom Car Rental</title>
+  <meta name="description" content="Get in touch with AZoom Car Rental.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="contact">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-banner">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / Contact</nav>
+        <h1>Contact us</h1>
+        <p>Questions about a booking, our cars or corporate rentals? Send us a message.</p>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container grid contact-grid">
+        <div class="panel">
+          <h2 class="h3">Send a message</h2>
+          <p class="text-muted small">Fields marked <span class="required"></span> are required.</p>
+
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="c-name" class="required">Full name</label>
+                <input type="text" id="c-name" name="name" autocomplete="name" required>
+              </div>
+              <div class="form-group">
+                <label for="c-email" class="required">Email</label>
+                <input type="email" id="c-email" name="email" autocomplete="email" required placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="c-phone">Mobile number</label>
+              <div class="phone-group">
+                <select id="c-country-code" name="countryCode" aria-label="Country code" autocomplete="tel-country-code"></select>
+                <input type="tel" id="c-phone" name="phone" autocomplete="tel-national" placeholder="9123 4567">
+              </div>
+              <p class="hint">Optional.</p>
+            </div>
+            <div class="form-group">
+              <label for="c-topic" class="required">Topic</label>
+              <select id="c-topic" name="topic" required>
+                <option value="">Choose a topic</option>
+                <option>New booking</option>
+                <option>Existing booking</option>
+                <option>Billing or damage charge</option>
+                <option>Corporate or long-term rental</option>
+                <option>Feedback</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group" id="ref-group" hidden>
+              <label for="c-ref" class="required">Booking reference</label>
+              <input type="text" id="c-ref" name="ref" placeholder="AZ-7Q4K2M" style="text-transform:uppercase">
+            </div>
+            <div class="form-group">
+              <label for="c-message" class="required">Message</label>
+              <textarea id="c-message" name="message" maxlength="1000" required aria-describedby="c-count"></textarea>
+              <p class="hint" id="c-count">0 / 1000 characters (minimum 20)</p>
+            </div>
+            <div class="form-group">
+              <label class="check"><input type="checkbox" name="consent" id="c-consent"> I agree to AZoom using my details to reply to this message.</label>
+            </div>
+            <button type="submit" class="btn btn-primary"><span data-icon="send"></span> Send message</button>
+          </form>
+        </div>
+
+        <aside>
+          <div class="panel mb-2">
+            <h2 class="h3">Customer care</h2>
+            <ul class="info-list">
+              <li><span data-icon="phone"></span><span>Hotline: <a href="tel:+6565550100">+65 6555 0100</a><br><span class="small text-muted">24 hours, 7 days a week</span></span></li>
+              <li><span data-icon="mail"></span><a href="mailto:hello@azoom.sg">hello@azoom.sg</a></li>
+              <li><span data-icon="alert"></span><span>24-hour roadside assistance:<br><a href="tel:+6565550199">+65 6555 0199</a></span></li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h2 class="h3">Visit a branch</h2>
+            <ul class="info-list" id="contact-branches"></ul>
+            <a href="branches.html">Maps and opening hours <span data-icon="arrow-right"></span></a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

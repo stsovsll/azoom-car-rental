@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book an EV – AZoom Car Rental</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="booking">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="section-sm">
+      <div class="container">
+        <h1 class="h3 no-print">Book your electric car</h1>
+        <ol class="wizard-progress no-print" id="progress" aria-label="Booking steps">
+          <li>Trip</li><li>Car</li><li>Extras</li><li>Driver</li><li>Payment</li><li>Done</li>
+        </ol>
+
+        <div class="wizard-layout">
+          <form id="wizard" class="panel" novalidate>
+            <section class="wizard-step" data-step="1" aria-labelledby="s1-title">
+              <h2 id="s1-title" tabindex="-1">1. Where and when?</h2>
+              <fieldset>
+                <legend>Pick-up branch</legend>
+                <div class="grid grid-2" id="branch-options"></div>
+              </fieldset>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="b-pickup-date" class="required">Pick-up date</label>
+                  <input type="date" id="b-pickup-date" name="pickupDate" required>
+                </div>
+                <div class="form-group">
+                  <label for="b-pickup-time" class="required">Pick-up time</label>
+                  <select id="b-pickup-time" name="pickupTime"></select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="b-return-date" class="required">Return date</label>
+                  <input type="date" id="b-return-date" name="returnDate" required>
+                </div>
+                <div class="form-group">
+                  <span class="label" id="b-return-by-label">Return by</span>
+                  <output id="b-return-by" class="period-output" for="b-return-date" aria-labelledby="b-return-by-label" aria-live="polite"></output>
+                </div>
+              </div>
+              <div class="form-group">
+                <span class="label" id="b-period-label">Rental period</span>
+                <output id="b-period" class="period-output" for="b-pickup-date b-pickup-time b-return-date" aria-labelledby="b-period-label" aria-live="polite"></output>
+                <p class="hint">Just choose your dates. We automatically charge the cheapest mix of monthly (30 days = pay for 22), weekly (7 days = pay for 6) and daily rates.</p>
+              </div>
+              <div class="form-group">
+                <label for="b-carpark" class="required">Return car park</label>
+                <select id="b-carpark" name="carpark"></select>
+                <p class="hint">Cars are returned to a designated car park, not the office. <a href="branches.html" target="_blank" rel="noopener">View car parks</a></p>
+              </div>
+            </section>
+
+            <section class="wizard-step" data-step="2" aria-labelledby="s2-title" hidden>
+              <h2 id="s2-title" tabindex="-1">2. Choose your car</h2>
+              <p class="text-muted" id="car-step-info"></p>
+              <fieldset>
+                <legend class="sr-only">Available cars</legend>
+                <div class="car-pick" id="car-options"></div>
+              </fieldset>
+              <div class="field-error" id="car-error" aria-live="polite"></div>
+            </section>
+
+            <section class="wizard-step" data-step="3" aria-labelledby="s3-title" hidden>
+              <h2 id="s3-title" tabindex="-1">3. Extras and insurance</h2>
+              <fieldset>
+                <legend>Optional extras</legend>
+                <div class="grid grid-3" id="extras-options"></div>
+                <p class="hint">Extras are charged per day, up to 7 days.</p>
+              </fieldset>
+              <fieldset>
+                <legend>Insurance cover</legend>
+                <div class="grid grid-3" id="insurance-options"></div>
+              </fieldset>
+            </section>
+
+            <section class="wizard-step" data-step="4" aria-labelledby="s4-title" hidden>
+              <h2 id="s4-title" tabindex="-1">4. Driver details</h2>
+              <p class="text-muted">The main driver must be at least <span class="js-min-age"></span> and have held a licence for at least <span class="js-min-years"></span>. Bring the physical licence when you pick up the car.</p>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="d-name" class="required">Full name (as on licence)</label>
+                  <input type="text" id="d-name" name="driverName" autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label for="d-email" class="required">Email</label>
+                  <input type="email" id="d-email" name="driverEmail" autocomplete="email">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="d-phone" class="required">Mobile number</label>
+                  <input type="tel" id="d-phone" name="driverPhone" autocomplete="tel" placeholder="9123 4567">
+                </div>
+                <div class="form-group">
+                  <label for="d-dob" class="required">Date of birth</label>
+                  <input type="date" id="d-dob" name="driverDob" autocomplete="bday">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="d-licence" class="required">Driving licence number</label>
+                  <input type="text" id="d-licence" name="driverLicence" placeholder="S1234567D" style="text-transform:uppercase" autocomplete="off">
+                  <p class="hint">Singapore licences use your NRIC/FIN number.</p>
+                </div>
+                <div class="form-group">
+                  <label for="d-issued" class="required">Licence issue date</label>
+                  <input type="date" id="d-issued" name="driverIssued">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="check"><input type="checkbox" name="driverConfirm" id="d-confirm"> I confirm these details are correct and match my driving licence.</label>
+              </div>
+              <label class="check small"><input type="checkbox" id="d-save" checked> Save these details to my profile for next time</label>
+            </section>
+
+            <section class="wizard-step" data-step="5" aria-labelledby="s5-title" hidden>
+              <h2 id="s5-title" tabindex="-1">5. Secure your booking</h2>
+              <div class="alert alert-info mb-3">
+                <span data-icon="lock"></span>
+                <p>We accept <strong>credit cards only</strong> (Visa, Mastercard, Amex). A refundable <strong class="js-deposit"></strong> deposit is held on your card now. The rental is charged on your final bill after the car is returned.</p>
+              </div>
+              <div class="grid grid-2" style="align-items:start">
+                <div>
+                  <fieldset id="saved-card-box" hidden>
+                    <legend>Payment card</legend>
+                    <div class="stack" id="card-choices"></div>
+                    <div class="form-group mt-2" id="saved-cvv-group">
+                      <label for="p-saved-cvv" class="required">Security code for this card</label>
+                      <input type="password" id="p-saved-cvv" name="savedCvv" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4" style="max-width:160px">
+                      <p class="hint">For your security we never store the security code, so please enter it each time.</p>
+                    </div>
+                    <button type="button" class="btn btn-ghost btn-sm" id="remove-saved-card"><span data-icon="trash"></span> Remove saved card</button>
+                  </fieldset>
+
+                  <div id="new-card-fields">
+                  <div class="form-group">
+                    <label for="p-number" class="required">Card number</label>
+                    <div class="input-group">
+                      <input type="text" id="p-number" name="cardNumber" inputmode="numeric" autocomplete="cc-number" placeholder="1234 5678 9012 3456">
+                      <span class="card-brand" id="p-brand" aria-live="polite">CARD</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="p-name" class="required">Name on card</label>
+                    <input type="text" id="p-name" name="cardName" autocomplete="cc-name" style="text-transform:uppercase">
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="p-expiry" class="required">Expiry (MM/YY)</label>
+                      <input type="text" id="p-expiry" name="cardExpiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5">
+                    </div>
+                    <div class="form-group">
+                      <label for="p-cvv" class="required">Security code</label>
+                      <input type="password" id="p-cvv" name="cardCvv" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="p-postal" class="required">Billing postal code</label>
+                    <input type="text" id="p-postal" name="cardPostal" inputmode="numeric" autocomplete="postal-code" maxlength="6" placeholder="560712">
+                  </div>
+                  <div class="form-group">
+                    <label class="check"><input type="checkbox" id="p-save-card" name="saveCard"> Save this card for faster booking next time</label>
+                    <p class="hint">We only keep the card type, last 4 digits, expiry and name – never the full card number or security code.</p>
+                  </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="card-preview" aria-hidden="true">
+                    <div class="cp-brand" id="cp-brand">AZoom Pay</div>
+                    <div class="cp-number" id="cp-number">•••• •••• •••• ••••</div>
+                    <div class="cp-row"><span id="cp-name">YOUR NAME</span><span id="cp-expiry">MM/YY</span></div>
+                  </div>
+                  <div class="demo-box mt-2">
+                    <strong>Test cards</strong> (no real payment is made)
+                    <ul class="mb-0 mt-1 small">
+                      <li>Visa <code>4242 4242 4242 4242</code></li>
+                      <li>Mastercard <code>5555 5555 5555 4444</code></li>
+                      <li>Amex <code>3782 822463 10005</code></li>
+                      <li>Debit (rejected) <code>4000 0566 5566 5556</code></li>
+                    </ul>
+                    Any future expiry date and any CVV.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mt-2">
+                <label class="check"><input type="checkbox" name="terms" id="p-terms"> I agree to the <a href="terms.html" target="_blank" rel="noopener">Terms and Conditions</a>.</label>
+              </div>
+            </section>
+
+            <section class="wizard-step" data-step="6" aria-labelledby="s6-title" hidden>
+              <div class="confirm-hero">
+                <div class="icon-circle"><span data-icon="check"></span></div>
+                <h2 id="s6-title" tabindex="-1">You're booked!</h2>
+                <p class="text-muted mb-1">Your booking reference is</p>
+                <div class="booking-ref" id="confirm-ref"></div>
+                <p class="text-muted mt-2 no-print">We've emailed a copy to <strong id="confirm-email"></strong> (simulated).</p>
+              </div>
+              <h3 class="print-only">AZoom Car Rental – booking summary</h3>
+              <div id="confirm-summary"></div>
+              <div class="flex flex-wrap mt-3 no-print">
+                <button type="button" class="btn btn-outline" id="print-summary"><span data-icon="print"></span> Print summary</button>
+                <a class="btn btn-primary" href="my-bookings.html">Go to My bookings</a>
+                <a class="btn btn-ghost" href="booking.html?new=1">Book another car</a>
+              </div>
+            </section>
+
+            <div class="wizard-nav no-print" id="wizard-nav">
+              <button type="button" class="btn btn-outline" id="btn-back"><span data-icon="arrow-left"></span> Back</button>
+              <button type="submit" class="btn btn-primary" id="btn-next">Continue <span data-icon="arrow-right"></span></button>
+            </div>
+          </form>
+
+          <aside class="panel summary no-print" aria-labelledby="summary-title">
+            <h2 class="h4" id="summary-title">Your booking</h2>
+            <div id="summary-body" aria-live="polite"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/summary.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

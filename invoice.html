@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invoice – AZoom Car Rental</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="invoice">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="section-sm">
+      <div class="container" style="max-width:960px">
+        <div class="flex flex-wrap between mb-2 no-print">
+          <a href="my-bookings.html" id="back-link"><span data-icon="arrow-left"></span> Back to My bookings</a>
+          <button type="button" class="btn btn-outline btn-sm" id="print-btn"><span data-icon="print"></span> Print</button>
+        </div>
+        <div id="pay-box" class="no-print"></div>
+        <article class="invoice" id="invoice" aria-live="polite"></article>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/summary.js"></script>
+  <script src="js/invoice.js"></script>
+</body>
+</html>

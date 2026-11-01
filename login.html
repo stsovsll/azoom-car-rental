@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in – AZoom Car Rental</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="login">
+  <div id="site-header"></div>
+
+  <main id="main" class="auth-wrap">
+    <section class="auth-side">
+      <h2>Welcome back to AZoom</h2>
+      <p>Log in to book an EV, manage your rentals and pay your final bill.</p>
+      <ul>
+        <li>See upcoming, active and past rentals</li>
+        <li>Change or cancel bookings online</li>
+        <li>View itemised invoices and pay with your saved card</li>
+      </ul>
+    </section>
+
+    <section class="auth-main">
+      <div class="auth-card">
+        <div class="tabs" role="tablist" aria-label="Account type" data-active="customer">
+          <span class="tab-indicator" aria-hidden="true"></span>
+          <button class="tab" role="tab" id="tab-customer" aria-selected="true" aria-controls="login-form" data-role="customer">Customer</button>
+          <button class="tab" role="tab" id="tab-staff" aria-selected="false" aria-controls="login-form" data-role="staff" tabindex="-1">Staff</button>
+        </div>
+
+        <h1 class="h3" id="login-title">Log in to your account</h1>
+        <div class="alert alert-info mb-2" id="already" hidden></div>
+        <div class="alert alert-danger mb-2" id="login-error" role="alert" hidden></div>
+
+        <form id="login-form" role="tabpanel" aria-labelledby="login-title" novalidate>
+          <div class="form-group">
+            <label for="l-email">Email</label>
+            <input type="email" id="l-email" name="email" autocomplete="username" required>
+          </div>
+          <div class="form-group">
+            <label for="l-password">Password</label>
+            <div class="input-group">
+              <input type="password" id="l-password" name="password" autocomplete="current-password" required>
+              <button type="button" class="input-addon" data-toggle-password="l-password"></button>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Log in</button>
+        </form>
+
+        <p class="mt-2 text-center swap" id="register-link">
+          <span data-role="customer">New to AZoom? <a href="register.html">Create an account</a></span>
+          <span data-role="staff">Staff accounts are created by AZoom.</span>
+        </p>
+
+        <div class="demo-box mt-3">
+          <strong>Demo accounts</strong> (for testing)
+          <p class="mb-1 mt-1" id="demo-text"></p>
+          <button type="button" class="btn btn-outline btn-sm" id="fill-demo">Fill in demo details</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

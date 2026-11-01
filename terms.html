@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terms and Conditions – AZoom Car Rental</title>
+  <meta name="description" content="The terms and conditions for renting an electric car from AZoom Car Rental.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="terms">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-banner">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / Terms and Conditions</nav>
+        <h1>Terms and Conditions</h1>
+        <p>The agreement between you and AZoom when you create an account or rent a car.</p>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container container-narrow">
+        <div class="alert mb-3">
+          <span data-icon="info"></span>
+          <p>AZoom is a fictional company created for a school project. No real rentals or payments take place, and these terms are not a legal agreement.</p>
+        </div>
+
+        <nav class="panel mb-3" aria-labelledby="terms-contents-title">
+          <h2 class="h4" id="terms-contents-title">Contents</h2>
+          <ol class="terms-contents">
+            <li><a href="#about">About these terms</a></li>
+            <li><a href="#eligibility">Who can rent</a></li>
+            <li><a href="#booking">Booking and rental charges</a></li>
+            <li><a href="#payment">Payment and deposit</a></li>
+            <li><a href="#pickup">Picking up the car</a></li>
+            <li><a href="#use">Using the car</a></li>
+            <li><a href="#return">Returning the car</a></li>
+            <li><a href="#damage">Damage and insurance</a></li>
+            <li><a href="#bill">Your final bill</a></li>
+            <li><a href="#changes">Changes and cancellations</a></li>
+            <li><a href="#account">Your account and information</a></li>
+            <li><a href="#contact">Contact us</a></li>
+          </ol>
+        </nav>
+
+        <div class="terms">
+          <section id="about">
+            <h2>1. About these terms</h2>
+            <p>These terms apply when you create an AZoom account or book a car. By ticking "I agree to the Terms and Conditions", you accept them. "We" means AZoom Car Rental and "you" means the person who makes the booking.</p>
+          </section>
+
+          <section id="eligibility">
+            <h2>2. Who can rent</h2>
+            <ul>
+              <li>Drivers must be at least <span data-policy="minAge"></span> years old.</li>
+              <li>Drivers must have held a valid driving licence for at least <span data-policy="licenceYears"></span>.</li>
+              <li>Additional drivers must meet the same rules and be named on the booking.</li>
+              <li>Only drivers named on the booking may drive the car.</li>
+            </ul>
+          </section>
+
+          <section id="booking">
+            <h2>3. Booking and rental charges</h2>
+            <ul>
+              <li>All cars must be reserved online. Bookings can last up to <span data-policy="maxDays"></span> days.</li>
+              <li>You choose your dates, and we charge the cheapest mix of daily, weekly and monthly rates. A week is 7 days and costs <span data-policy="weeklyRate"></span> daily rates. A month is a fixed 30 days and costs <span data-policy="monthlyRate"></span> daily rates.</li>
+              <li>Days are counted by calendar date. Returning a car on the day you picked it up counts as 1 day.</li>
+              <li>Extras are charged per day, for up to <span data-policy="extrasDays"></span> days per rental.</li>
+              <li>All prices are in Singapore dollars and include GST.</li>
+            </ul>
+          </section>
+
+          <section id="payment">
+            <h2>4. Payment and deposit</h2>
+            <ul>
+              <li>We accept credit cards only: Visa, Mastercard and American Express. Debit and prepaid cards are not accepted.</li>
+              <li>A refundable deposit of <span data-policy="deposit"></span> is held on your card when you book.</li>
+              <li>The rental is charged on your final bill after the car has been returned and inspected.</li>
+            </ul>
+          </section>
+
+          <section id="pickup">
+            <h2>5. Picking up the car</h2>
+            <ul>
+              <li>Cars are collected from the AZoom branch you chose, during its opening hours.</li>
+              <li>You must show your physical driving licence, your NRIC or passport, and the credit card used to book.</li>
+              <li>Our staff record the mileage and battery level before handing over the car.</li>
+            </ul>
+          </section>
+
+          <section id="use">
+            <h2>6. Using the car</h2>
+            <ul>
+              <li>You must drive safely, follow all road rules and have a valid licence throughout the rental.</li>
+              <li>You are responsible for parking charges, traffic fines and public charging costs during the rental.</li>
+              <li>Report any accident, breakdown or damage to us straight away. Roadside assistance is available 24 hours a day on +65 6555 0199.</li>
+            </ul>
+          </section>
+
+          <section id="return">
+            <h2>7. Returning the car</h2>
+            <ul>
+              <li>Cars must be returned to a designated AZoom car park by <span data-policy="returnBy"></span> on your return date.</li>
+              <li>After a <span data-policy="graceMins"></span>-minute grace period, late returns cost <span data-policy="lateFee"></span> for every started hour, capped at <span data-policy="lateCap"></span> times the daily rate for each 24 hours late.</li>
+              <li>Returning the car with less than <span data-policy="batteryLevel"></span>% battery adds a <span data-policy="batteryFee"></span> recharging fee.</li>
+            </ul>
+          </section>
+
+          <section id="damage">
+            <h2>8. Damage and insurance</h2>
+            <p>Our staff inspect every returned car. New damage is charged using the <a href="pricing.html#damage">damage charge schedule</a>, up to the most you can pay under your insurance cover:</p>
+            <ul id="terms-insurance"></ul>
+          </section>
+
+          <section id="bill">
+            <h2>9. Your final bill</h2>
+            <p>Your final bill is the rental, extras and insurance, plus any damage, late return and low battery charges, minus your deposit. If the bill is less than your deposit, we refund the difference to the same card. If it is more, you pay the balance in My bookings.</p>
+          </section>
+
+          <section id="changes">
+            <h2>10. Changes and cancellations</h2>
+            <ul>
+              <li>You can change your dates, extras, insurance or return car park up to <span data-policy="modifyHours"></span> hours before pick-up. The price is recalculated at the same rates.</li>
+              <li>To change your car or pick-up branch, cancel and make a new booking.</li>
+              <li>Cancelling is free more than <span data-policy="cancelHours"></span> hours before pick-up. After that, one day's rental is charged.</li>
+            </ul>
+          </section>
+
+          <section id="account">
+            <h2>11. Your account and information</h2>
+            <ul>
+              <li>Keep your login details private, and make sure the details on your account are correct.</li>
+              <li>We use your details only to manage your account and bookings.</li>
+              <li>We keep only your card type, last 4 digits, expiry date and cardholder name. We never keep your full card number or security code.</li>
+            </ul>
+          </section>
+
+          <section id="contact">
+            <h2>12. Contact us</h2>
+            <p>Questions about these terms? Call <a href="tel:+6565550100">+65 6555 0100</a>, email <a href="mailto:hello@azoom.sg">hello@azoom.sg</a>, or use our <a href="contact.html">contact form</a>.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/terms.js"></script>
+</body>
+</html>

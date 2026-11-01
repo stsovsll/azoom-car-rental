@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vehicle inspection – AZoom staff</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="inspection">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="section-sm">
+      <div class="container">
+        <h1 class="h3">Vehicle inspection</h1>
+
+        <div class="panel mb-3" id="picker">
+          <form id="pick-form" class="flex flex-wrap" novalidate style="align-items:flex-end">
+            <div class="form-group mb-0" style="flex:1;min-width:240px">
+              <label for="pick-ref">Returned car waiting for inspection</label>
+              <select id="pick-ref" name="ref"></select>
+            </div>
+            <button type="submit" class="btn btn-primary">Start inspection</button>
+          </form>
+        </div>
+
+        <form id="inspect-form" novalidate hidden>
+          <div class="panel mb-3" id="booking-info"></div>
+
+          <div class="panel mb-3">
+            <h2 class="h4">Readings</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="i-mileage" class="required">Ending mileage (km)</label>
+                <input type="number" id="i-mileage" name="mileage" min="0">
+                <p class="hint" id="i-mileage-hint"></p>
+              </div>
+              <div class="form-group">
+                <div class="range-row"><label for="i-battery" class="required mb-0">Ending battery</label><output id="i-battery-out" for="i-battery"></output></div>
+                <input type="range" id="i-battery" name="battery" min="0" max="100" step="1" value="50">
+                <p class="hint" id="i-battery-hint" aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="h4">Damage checklist</h2>
+          <p class="text-muted small">Tick "Damage found" for any area with new damage, then choose the type and severity and add photos.</p>
+          <div class="area-grid mb-3" id="areas"></div>
+
+          <div class="panel mb-3">
+            <div class="form-group">
+              <label for="i-notes">Inspector notes</label>
+              <textarea id="i-notes" name="notes" placeholder="Describe any damage, cleanliness or missing items."></textarea>
+            </div>
+            <ul class="line-items" id="inspect-totals" aria-live="polite"></ul>
+          </div>
+
+          <div class="flex flex-wrap between">
+            <a class="btn btn-ghost" href="staff-dashboard.html#returns"><span data-icon="arrow-left"></span> Back to returns</a>
+            <button type="submit" class="btn btn-primary btn-lg"><span data-icon="receipt"></span> Save inspection and generate bill</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/summary.js"></script>
+  <script src="js/inspection.js"></script>
+</body>
+</html>

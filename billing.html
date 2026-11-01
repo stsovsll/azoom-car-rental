@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Billing – AZoom staff</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="billing">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="section-sm">
+      <div class="container">
+        <div id="bill-list-view">
+          <h1 class="h3">Billing</h1>
+          <p class="text-muted" id="awaiting-note"></p>
+          <div class="dash-tabs" role="tablist" aria-label="Bills" id="bill-tabs">
+            <button class="dash-tab" role="tab" data-filter="due" id="bt-due" aria-controls="bill-table">Payment due <span class="count"></span></button>
+            <button class="dash-tab" role="tab" data-filter="paid" id="bt-paid" aria-controls="bill-table">Paid <span class="count"></span></button>
+            <button class="dash-tab" role="tab" data-filter="all" id="bt-all" aria-controls="bill-table">All <span class="count"></span></button>
+          </div>
+          <div class="table-wrap" id="bill-table" role="tabpanel">
+            <table class="table">
+              <caption class="sr-only">Final bills</caption>
+              <thead><tr><th scope="col">Booking</th><th scope="col">Customer</th><th scope="col">Car</th><th scope="col">Inspected</th><th scope="col">Due / refund</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Action</span></th></tr></thead>
+              <tbody id="bill-rows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="bill-view" hidden>
+          <div class="flex flex-wrap between mb-2 no-print">
+            <a href="billing.html"><span data-icon="arrow-left"></span> All bills</a>
+            <div class="flex flex-wrap" id="bill-actions"></div>
+          </div>
+          <div class="panel mb-2 no-print" id="bill-formula"></div>
+          <article class="invoice" id="bill-doc"></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/summary.js"></script>
+  <script src="js/billing.js"></script>
+</body>
+</html>

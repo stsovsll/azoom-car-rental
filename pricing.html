@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing and policies – AZoom Car Rental</title>
+  <meta name="description" content="AZoom rental rates, deposit, late fees, damage charges and cancellation policy.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="pricing">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-banner">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / Pricing</nav>
+        <h1>Pricing and policies</h1>
+        <p>Simple, transparent pricing. Rent longer and pay less: a week costs 6 days and a month costs 22 days.</p>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <div class="alert alert-warning mb-3">
+          <span data-icon="card"></span>
+          <p><strong>Credit cards only.</strong> We accept Visa, Mastercard and American Express credit cards. Debit cards, cash, PayNow and e-wallets are not accepted. The card used to reserve must be shown at pick-up.</p>
+        </div>
+
+        <h2 id="rates">Rental rates</h2>
+        <p class="text-muted">All prices are in Singapore dollars and include GST. Unlimited mileage on every rental.</p>
+        <div class="table-wrap">
+          <table class="table">
+            <caption class="sr-only">Daily, weekly and monthly rates for each car</caption>
+            <thead><tr><th scope="col">Car</th><th scope="col">Seats</th><th scope="col" class="num">Daily</th><th scope="col" class="num">Weekly (7 days)</th><th scope="col" class="num">Monthly (30 days)</th><th scope="col" class="num">Monthly saving</th></tr></thead>
+            <tbody id="rate-rows"></tbody>
+          </table>
+        </div>
+
+        <div class="panel mt-3" id="price-check">
+          <h3>How we price longer rentals</h3>
+          <p class="text-muted">We automatically pick the cheapest mix of monthly, weekly and daily rates for your dates. Try it:</p>
+          <div class="form-row form-row-3">
+            <div class="form-group">
+              <label for="pc-car">Car</label>
+              <select id="pc-car"></select>
+            </div>
+            <div class="form-group">
+              <label for="pc-days">Number of days</label>
+              <input type="number" id="pc-days" min="1" max="90" value="9">
+            </div>
+            <div class="form-group">
+              <span class="label">You pay</span>
+              <div class="savings-big num" id="pc-total" style="font-size:1.8rem" aria-live="polite"></div>
+            </div>
+          </div>
+          <ul class="line-items" id="pc-lines"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container grid grid-2">
+        <div class="panel">
+          <div class="icon-circle"><span data-icon="lock"></span></div>
+          <h2 class="h3">Deposit</h2>
+          <p>A refundable deposit of <strong id="p-deposit"></strong> is held on your credit card when you reserve. It is used towards your final bill after the car has been inspected. Anything left over is refunded to the same card.</p>
+          <h3>Extras</h3>
+          <ul class="line-items" id="extras-list"></ul>
+          <p class="small text-muted">Extras are charged per day, up to a maximum of 7 days per rental.</p>
+        </div>
+        <div class="panel">
+          <div class="icon-circle"><span data-icon="shield"></span></div>
+          <h2 class="h3">Insurance cover</h2>
+          <p>Every rental includes Basic cover. You can reduce how much you pay for damage by upgrading.</p>
+          <div class="table-wrap">
+            <table class="table">
+              <caption class="sr-only">Insurance tiers</caption>
+              <thead><tr><th scope="col">Tier</th><th scope="col" class="num">Per day</th><th scope="col" class="num">Max you pay for damage</th></tr></thead>
+              <tbody id="insurance-rows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <h2 id="fees">Late returns and battery</h2>
+        <div class="grid grid-2">
+          <div class="panel">
+            <h3><span data-icon="clock"></span> Late return fee</h3>
+            <ul id="late-policy"></ul>
+          </div>
+          <div class="panel">
+            <h3><span data-icon="battery"></span> Low battery fee</h3>
+            <ul id="battery-policy"></ul>
+          </div>
+        </div>
+
+        <h2 class="mt-4" id="damage">Damage charge schedule</h2>
+        <p class="text-muted">After you return the car, our staff inspect the front, rear, both sides, interior and tyres. Any new damage is charged using this table, up to your insurance excess.</p>
+        <div class="table-wrap">
+          <table class="table">
+            <caption class="sr-only">Damage charges by type and severity</caption>
+            <thead><tr><th scope="col">Damage type</th><th scope="col" class="num">Minor</th><th scope="col" class="num">Moderate</th><th scope="col" class="num">Severe</th></tr></thead>
+            <tbody id="damage-rows"></tbody>
+          </table>
+        </div>
+
+        <h2 class="mt-4" id="cancellation">Cancellation and changes</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <caption class="sr-only">Cancellation policy</caption>
+            <thead><tr><th scope="col">When you cancel</th><th scope="col">Fee</th></tr></thead>
+            <tbody id="cancel-rows"></tbody>
+          </table>
+        </div>
+        <p class="mt-2 text-muted">You can change your dates, car, extras or return car park in My bookings up to <span id="p-modify"></span> hours before pick-up. The price is recalculated at the same rates.</p>
+
+        <h2 class="mt-4">Your final bill</h2>
+        <div class="panel">
+          <p class="mb-1"><strong>Final bill = rental + extras + insurance + damages + late fee + low battery fee − deposit</strong></p>
+          <p class="mb-0 text-muted">If the total is less than your deposit, the difference is refunded to your credit card.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/pricing-page.js"></script>
+</body>
+</html>

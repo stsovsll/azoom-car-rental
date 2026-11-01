@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AZoom Car Rental Singapore</title>
+  <meta name="description" content="Rent an electric car by the day, week or month from AZoom's Ang Mo Kio and Jurong East branches.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow" style="color:#67E8F9">100% electric · Singapore</span>
+          <h1>Drive electric.<br><span class="highlight">Zoom</span> further.</h1>
+          <p class="hero-lead">Book an electric car from AZoom in minutes! From just S$108 per day, no membership fees required!</p>
+          <div class="flex flex-wrap mt-3">
+            <a class="btn btn-light btn-lg" href="fleet.html">Book an EV <span data-icon="arrow-right"></span></a>
+            <a class="btn btn-lg" style="color:#fff;border-color:rgba(255,255,255,.5)" href="fleet.html">Browse the fleet</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong>9</strong><span>EV models</span></div>
+            <div><strong>2</strong><span>branches</span></div>
+            <div><strong>from S$108</strong><span>per day</span></div>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img src="images/hero-car.svg" alt="Illustration of a white electric SUV plugged into a charging station" width="620" height="250">
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="quick-search" aria-labelledby="qs-title">
+        <h2 id="qs-title" class="sr-only">Quick search</h2>
+        <form id="quick-search" novalidate>
+          <div class="form-group">
+            <label for="qs-branch">Pick-up branch</label>
+            <select id="qs-branch" name="branch"></select>
+          </div>
+          <div class="form-group">
+            <label for="qs-pickup">Pick-up date</label>
+            <input type="date" id="qs-pickup" name="pickup" required>
+          </div>
+          <div class="form-group">
+            <label for="qs-return">Return date</label>
+            <input type="date" id="qs-return" name="return" required>
+          </div>
+          <div class="form-group">
+            <span class="label" id="qs-period-label">Rental period</span>
+            <output id="qs-period" class="period-output" for="qs-pickup qs-return" aria-labelledby="qs-period-label" aria-live="polite"></output>
+          </div>
+          <button class="btn btn-primary btn-lg" type="submit"><span data-icon="search"></span> Find a car</button>
+        </form>
+      </section>
+    </div>
+
+    <section class="section section-alt" aria-labelledby="why-azoom-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Why AZoom</span>
+          <h2 id="why-azoom-title">Why rent with AZoom?</h2>
+          <p>Renting a car should be simple and fair. Here's what makes AZoom different.</p>
+        </div>
+        <div class="grid-centered">
+          <div class="card feature"><div class="icon-circle"><span data-icon="bolt"></span></div><h3>Sustainable &amp; Eco-Friendly</h3><p>100% electric fleet! You'll never need to visit a petrol station.</p></div>
+          <div class="card feature"><div class="icon-circle"><span data-icon="coins"></span></div><h3>Affordable &amp; Transparent</h3><p>Pay only for what you need! Your final bill lists every charge, no hidden fees. <a href="pricing.html">View pricing here!</a></p></div>
+          <div class="card feature"><div class="icon-circle"><span data-icon="parking"></span></div><h3>Easy Return</h3><p>Drop the car at one of our many designated 24 hours car parks.</p></div>
+          <div class="card feature"><div class="icon-circle"><span data-icon="calendar"></span></div><h3>Free cancellation</h3><p>Change of plans? No problem! Cancel for free up to 48 hours before pick-up on our website!</p></div>
+          <div class="card feature"><div class="icon-circle"><span data-icon="shield"></span></div><h3>Cover that suits you</h3><p>Basic insurance is always included. Upgrade to Premium and be rid of fees!</p></div>
+          <div class="card feature"><div class="icon-circle"><span data-icon="phone"></span></div><h3>24/7 Support</h3><p>Customer service around the clock! <a href="tel:+6565550199">Contact us</a> anytime! day or night.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Featured EVs</span>
+          <h2>Popular picks this month</h2>
+          <p>Every car is fully charged, cleaned and ready when you arrive.</p>
+        </div>
+        <div class="grid grid-4" id="featured-cars"></div>
+        <p class="text-center mt-3"><a class="btn btn-outline" href="fleet.html">See all 9 models <span data-icon="arrow-right"></span></a></p>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="why-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Why go electric</span>
+          <h2 id="why-title">Cleaner, quieter and cheaper to run</h2>
+          <p>Electric cars aren't just better for the planet. They're also a better drive.</p>
+        </div>
+        <div class="grid grid-4">
+          <div class="card feature"><div class="icon-circle"><span data-icon="leaf"></span></div><h3>Zero tailpipe emissions</h3><p>No exhaust fumes, so the air in our neighbourhoods stays cleaner.</p></div>
+          <div class="card feature"><div class="icon-circle"><span data-icon="coins"></span></div><h3>Lower running costs</h3><p>Charging costs a fraction of petrol, and there are no oil changes.</p></div>
+          <div class="card feature"><div class="icon-circle"><span data-icon="quiet"></span></div><h3>Quiet and smooth</h3><p>Instant torque and a silent cabin make stop-start traffic relaxing.</p></div>
+          <div class="card feature"><div class="icon-circle"><span data-icon="plug"></span></div><h3>Easy charging</h3><p>Thousands of public chargers island-wide, plus fast chargers at our car parks.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section how" id="how" data-tone="light" aria-labelledby="how-title">
+      <div class="container how-grid">
+        <div class="how-intro">
+          <span class="how-eyebrow">How it works</span>
+          <h2 id="how-title">From booking to bill in 5 simple steps</h2>
+          <p class="how-progress" aria-hidden="true"><span id="how-current">1</span> / 5</p>
+        </div>
+        <ol class="how-steps">
+          <li class="how-step" data-tone="light"><span class="how-num">1</span><h3>Online Booking</h3><p>Choose your car and dates, then secure the booking with your credit card.</p></li>
+          <li class="how-step" data-tone="dark"><span class="how-num">2</span><h3>Car Pickup</h3><p>Show your license and payment card at Ang Mo Kio or Jurong East and drive away.</p></li>
+          <li class="how-step" data-tone="dark"><span class="how-num">3</span><h3>Car Return</h3><p>Park in a designated car park, submit your return details online and carry on with your day.</p></li>
+          <li class="how-step" data-tone="dark"><span class="how-num">4</span><h3>Car Inspection</h3><p>Our team checks the car for damage and records the battery level.</p></li>
+          <li class="how-step" data-tone="light"><span class="how-num">5</span><h3>Seemless Billing</h3><p>Invoice will be sent to your email. Total charge minus your deposit will be processed through your credit card.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="reviews-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Reviews</span>
+          <h2 id="reviews-title">What our customers say</h2>
+          <p id="reviews-summary"></p>
+        </div>
+      </div>
+      <div class="review-marquee" id="review-list">
+        <div class="marquee" data-direction="right"><div class="marquee-track"></div></div>
+        <div class="marquee" data-direction="left"><div class="marquee-track"></div></div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <div class="page-banner" style="border-radius:var(--radius);padding:2.5rem 2rem">
+          <div class="flex flex-wrap between">
+            <div>
+              <h2 style="color:#fff">Ready to make the switch?</h2>
+              <p>Book in under 3 minutes. Free cancellation up to 48 hours before pick-up.</p>
+            </div>
+            <a class="btn btn-light btn-lg" href="booking.html">Start booking <span data-icon="arrow-right"></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <noscript><p class="container alert alert-warning">JavaScript is turned off. You can browse the site, but booking, login and the calculators need JavaScript.</p></noscript>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/cars.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 210" role="img">
+  <rect x="0" y="0" width="496" height="210" rx="16" fill="#E3F5EE"/>
+  <rect x="60" y="30" width="80" height="160" rx="14" fill="#0F172A"/>
+  <rect x="74" y="46" width="52" height="40" rx="6" fill="#065F46"/>
+  <path d="M104,52 L92,68 L101,68 L96,80 L110,63 L101,63 L106,52 Z" fill="#34D399"/>
+  <rect x="84" y="100" width="32" height="10" rx="5" fill="#22D3EE"/>
+  <path d="M140,120 C200,120 200,170 260,160 C300,154 300,120 330,112" stroke="#0F172A" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <rect x="326" y="98" width="44" height="28" rx="8" fill="#334155"/>
+  <rect x="370" y="58" width="100" height="110" rx="12" fill="#FFFFFF" stroke="#0B8F6A" stroke-width="3"/>
+  <rect x="392" y="80" width="56" height="30" rx="5" fill="none" stroke="#0F172A" stroke-width="4"/>
+  <rect x="448" y="89" width="6" height="12" rx="2" fill="#0F172A"/>
+  <rect x="396" y="84" width="38" height="22" rx="3" fill="#0B8F6A"/>
+  <text x="420" y="140" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-weight="800" font-size="22" fill="#0F172A">80%</text>
+  <text x="420" y="158" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="#475569">DC fast charge</text>
+</svg>

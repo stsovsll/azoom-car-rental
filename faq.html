@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ – AZoom Car Rental</title>
+  <meta name="description" content="Answers to common questions about renting, charging and returning an AZoom electric car.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="faq">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-banner">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / FAQ</nav>
+        <h1>Frequently asked questions</h1>
+        <p>Everything you need to know about renting an electric car with AZoom.</p>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container container-narrow">
+        <div class="form-group">
+          <label for="faq-search">Search the FAQ</label>
+          <input type="search" id="faq-search" placeholder="Charging, deposit, late return…">
+        </div>
+        <div class="faq-cats" role="group" aria-label="Filter by topic" id="faq-cats"></div>
+        <div class="accordion" id="faq-list"></div>
+        <p class="empty-state mt-2" id="faq-empty" hidden>No questions match your search. <a href="contact.html">Ask us directly</a>.</p>
+
+        <div class="panel mt-4 flex flex-wrap between">
+          <div>
+            <h2 class="h3 mb-1">Still have a question?</h2>
+            <p class="mb-0 text-muted">Our team usually replies within one working day.</p>
+          </div>
+          <a class="btn btn-primary" href="contact.html">Contact us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/faq.js"></script>
+</body>
+</html>

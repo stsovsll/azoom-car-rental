@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Branches and return car parks – AZoom Car Rental</title>
+  <meta name="description" content="AZoom branches in Ang Mo Kio and Jurong East: addresses, opening hours, maps and designated return car parks.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("azoom_theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      );
+    } catch (e) {}
+  </script>
+</head>
+<body data-page="branches">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-banner">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / Branches</nav>
+        <h1>Branches and car parks</h1>
+        <p>Pick up your car at one of our two offices. When you're done, return it to any designated AZoom car park.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-2" id="branch-list"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="carparks-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Returns</span>
+          <h2 id="carparks-title">Designated return car parks</h2>
+          <p>Cars must be returned to one of these car parks. You choose your return car park when you book, and you can change it later in My bookings.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <caption class="sr-only">Return car parks</caption>
+            <thead><tr><th scope="col">Car park</th><th scope="col">Branch</th><th scope="col">Lots</th><th scope="col">Open</th><th scope="col" class="num">EV chargers</th></tr></thead>
+            <tbody id="carpark-rows"></tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-4">How to return your car</h3>
+        <ol class="steps steps-4">
+          <li class="step"><div class="step-num">1</div><h3>Drive to your car park</h3><p>Use the car park you chose when booking (shown in My bookings).</p></li>
+          <li class="step"><div class="step-num">2</div><h3>Park in an AZoom lot</h3><p>Look for the green AZoom signs and the lot numbers listed above.</p></li>
+          <li class="step"><div class="step-num">3</div><h3>Lock and drop the key</h3><p>Lock the car and drop the key card into the AZoom key box by the lift lobby.</p></li>
+          <li class="step"><div class="step-num">4</div><h3>Tap "Return car"</h3><p>Confirm the return in My bookings. We'll inspect the car and send the final bill.</p></li>
+        </ol>
+        <div class="alert alert-warning mt-3"><span data-icon="battery"></span><p>Return the car with at least 20% battery to avoid a S$50 recharging fee. Late returns are charged after a 30-minute grace period. <a href="pricing.html">See all fees</a>.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/core.js"></script>
+  <script>
+    function renderBranches() {
+      document.getElementById("branch-list").innerHTML = BRANCHES.map(b => {
+        const carparks = CARPARKS.filter(c => c.branchId === b.id);
+        return `
+          <article class="card">
+            <iframe class="map-embed" title="Map of AZoom ${b.name} branch" loading="lazy"
+              src="https://maps.google.com/maps?q=${b.mapQuery}&z=16&output=embed"></iframe>
+            <div class="card-body">
+              <h2 class="h3">AZoom ${b.name}</h2>
+              <ul class="info-list">
+                <li>${icon("pin")}<span>${b.address}</span></li>
+                <li>${icon("car")}<span>${b.mrt}</span></li>
+                <li>${icon("phone")}<a href="tel:${b.phone.replace(/\s/g, "")}">${b.phone}</a></li>
+                <li>${icon("mail")}<a href="mailto:${b.email}">${b.email}</a></li>
+              </ul>
+              <h3 class="mt-2">${icon("clock")} Opening hours</h3>
+              <table class="hours-table"><caption class="sr-only">Opening hours for ${b.name}</caption>
+                ${b.hours.map(h => `<tr><td>${h[0]}</td><td>${h[1]}</td></tr>`).join("")}
+              </table>
+              <h3 class="mt-2">${icon("parking")} Return car parks</h3>
+              <ul>${carparks.map(c => `<li>${c.name}</li>`).join("")}</ul>
+              <a class="btn btn-primary mt-1" href="booking.html?branch=${b.id}">Book at ${b.name}</a>
+            </div>
+          </article>`;
+      }).join("");
+
+      document.getElementById("carpark-rows").innerHTML = CARPARKS.map(
+        c => `
+        <tr>
+          <td><strong>${c.name}</strong><br><span class="small text-muted">${c.address}</span></td>
+          <td>${getBranch(c.branchId).name}</td>
+          <td>${c.lots}</td>
+          <td>${c.hours}</td>
+          <td class="num">${c.chargers}</td>
+        </tr>`
+      ).join("");
+    }
+    document.addEventListener("DOMContentLoaded", renderBranches);
+  </script>
+</body>
+</html>
