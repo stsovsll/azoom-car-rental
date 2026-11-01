@@ -840,4 +840,70 @@ function seedDemoData() {
   saveData("seedVersion", SEED_VERSION);
 }
 
+const PHOTO_CREDITS = [
+  {
+    carId: "tesla-model-3",
+    author: "Chanokchon",
+    licence: "CC BY-SA 4.0",
+    licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    source: "https://commons.wikimedia.org/wiki/File:2023_Tesla_Model_3_Highland_Long_Range_AWD.jpg"
+  },
+  {
+    carId: "tesla-model-y",
+    author: "Alexander Migl",
+    licence: "CC BY-SA 4.0",
+    licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    source: "https://commons.wikimedia.org/wiki/File:Tesla_Model_Y_1X7A6211.jpg"
+  },
+  {
+    carId: "byd-atto-3",
+    author: "Alexander Migl",
+    licence: "CC BY-SA 4.0",
+    licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    source: "https://commons.wikimedia.org/wiki/File:BYD_Atto_3_1X7A6491.jpg"
+  },
+  {
+    carId: "byd-dolphin",
+    author: "Alexander-93",
+    licence: "CC BY-SA 4.0",
+    licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    source: "https://commons.wikimedia.org/wiki/File:BYD_Dolphin_IAA_2023_1X7A0039.jpg"
+  },
+  {
+    carId: "byd-seal",
+    author: "User3204",
+    licence: "CC BY-SA 4.0",
+    licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    source: "https://commons.wikimedia.org/wiki/File:2022_BYD_Seal.jpg"
+  },
+  {
+    carId: "hyundai-ioniq-5",
+    author: "Alexander-93",
+    licence: "CC BY-SA 4.0",
+    licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    source: "https://commons.wikimedia.org/wiki/File:Hyundai_Ioniq_5_1X7A0847.jpg"
+  },
+  {
+    carId: "mg4",
+    author: "M 93",
+    licence: "CC BY-SA 3.0 de",
+    licenceUrl: "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+    source: "https://commons.wikimedia.org/wiki/File:MG4_Electric_%E2%80%93_f_21042025.jpg"
+  },
+  {
+    carId: "kia-ev9",
+    author: "Alexander-93",
+    licence: "CC BY-SA 4.0",
+    licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    source: "https://commons.wikimedia.org/wiki/File:Kia_EV9_1X7A2472.jpg"
+  },
+  {
+    carId: "byd-m6",
+    author: "Varzio",
+    licence: "CC BY 4.0",
+    licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    source: "https://commons.wikimedia.org/wiki/File:BYD-M6-EV.jpg"
+  }
+];
+
 const SEED_VERSION = 3;

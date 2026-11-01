@@ -1361,14 +1361,15 @@ legend {
 
 .car-media {
   position: relative;
-  background: linear-gradient(180deg, var(--surface-2), var(--surface));
-  padding: 1.25rem 1rem .5rem;
+  background: var(--surface-2);
 }
 
 .car-media img {
+  display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 9;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .car-media .badge {
@@ -2916,6 +2917,10 @@ legend {
   font-size: .75rem;
   cursor: pointer;
   line-height: 1;
+}
+
+.booking-card > img {
+  object-fit: cover;
 }
 
 .return-preview figure {

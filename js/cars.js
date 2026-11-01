@@ -4,7 +4,7 @@ function carCardHTML(car, showCompare = false) {
     <article class="card card-hover car-card" data-car="${car.id}">
       <div class="car-media">
         <span class="badge badge-accent">${icon("bolt")} ${car.tag}</span>
-        <img src="${carImage(car.id)}" alt="${carName(car)} in ${car.colours[0][0].toLowerCase()}, side view" loading="lazy" width="496" height="210">
+        <img src="${carImage(car.id)}" alt="${carName(car)}" loading="lazy" width="800" height="450">
       </div>
       <div class="card-body">
         <div class="car-brand">${car.brand} · ${car.type}</div>
@@ -32,24 +32,23 @@ function openCarDetails(carId) {
   const car = getCar(carId);
   if (!car) return;
   const r = getRates(car);
-  const photos = car.colours
-    .map((c, i) => ({
-      src: carImage(car.id, i),
-      alt: `${carName(car)} in ${c[0].toLowerCase()}`,
-      label: c[0]
-    }))
-    .concat([
-      {
-        src: "images/gallery-interior.svg",
-        alt: "Illustration of an EV interior with a central touchscreen",
-        label: "Interior"
-      },
-      {
-        src: "images/gallery-charging.svg",
-        alt: "Illustration of the car at a DC fast charger",
-        label: "Charging"
-      }
-    ]);
+  const photos = [
+    {
+      src: carImage(car.id),
+      alt: carName(car),
+      label: "Exterior"
+    },
+    {
+      src: "images/gallery-interior.svg",
+      alt: "Illustration of an EV interior with a central touchscreen",
+      label: "Interior"
+    },
+    {
+      src: "images/gallery-charging.svg",
+      alt: "Illustration of the car at a DC fast charger",
+      label: "Charging"
+    }
+  ];
 
   const content = `
     <div class="grid grid-2" style="align-items:start">
@@ -71,7 +70,7 @@ function openCarDetails(carId) {
           <li><span>AC charge (full)</span><span>~${car.acHours} h</span></li>
           <li><span>0–100 km/h</span><span>${car.acceleration} s</span></li>
           <li><span>Boot space</span><span>${car.boot} L</span></li>
-          <li><span>Colours</span><span>${car.colours.length}</span></li>
+          <li><span>Colours</span><span>${car.colours.map(c => c[0]).join(", ")}</span></li>
         </ul>
         <h3 class="h4">Highlights</h3>
         <div class="flex flex-wrap">${car.features.map(f => `<span class="badge">${icon("check")} ${f}</span>`).join("")}</div>

@@ -124,8 +124,8 @@ const getCarpark = id => CARPARKS.find(c => c.id === id);
 const carName = car =>
   car.model.startsWith(car.brand) ? car.model : `${car.brand} ${car.model}`;
 
-function carImage(carId, colour = 0) {
-  return `images/cars/${carId}-${colour + 1}.svg`;
+function carImage(carId) {
+  return `images/cars/${carId}.jpg`;
 }
 
 const BOOKING_STATUS = {

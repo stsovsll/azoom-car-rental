@@ -27,6 +27,11 @@ function fillTerms() {
     t =>
       `<li>${t.name}: ${t.perDay ? `${formatMoney(t.perDay)} per day` : "included"}, ${t.excess ? `you pay up to ${formatMoney(t.excess)}` : "you pay nothing"} for damage.</li>`
   ).join("");
+
+  document.getElementById("terms-credits").innerHTML = PHOTO_CREDITS.map(
+    c =>
+      `<li>${carName(getCar(c.carId))}: <a href="${c.source}" rel="noopener">photo</a> by ${c.author}, <a href="${c.licenceUrl}" rel="noopener">${c.licence}</a></li>`
+  ).join("");
 }
 
 document.addEventListener("DOMContentLoaded", fillTerms);
